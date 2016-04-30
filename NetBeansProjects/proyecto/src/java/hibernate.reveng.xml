@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
+<hibernate-reverse-engineering>
+  <schema-selection match-schema="JOHN"/>
+  <table-filter match-name="DESPACHO"/>
+  <table-filter match-name="PROVEEDOR"/>
+  <table-filter match-name="ESTADO_PEDIDO"/>
+  <table-filter match-name="CONVENIO"/>
+  <table-filter match-name="PLATO"/>
+  <table-filter match-name="PEDIDO"/>
+  <table-filter match-name="MENU_CLIENTE"/>
+  <table-filter match-name="REPARTIDOR"/>
+  <table-filter match-name="INGREDIENTE"/>
+  <table-filter match-name="TIPO_USUARIO"/>
+  <table-filter match-name="CLIENTE"/>
+  <table-filter match-name="CUENTA"/>
+  <table-filter match-name="TIPO_PEDIDO"/>
+  <table-filter match-name="VENTA"/>
+  <table-filter match-name="MENUCLIENTE_PLATO"/>
+  <table-filter match-name="CATEGORIA"/>
+  <table-filter match-name="PERSONA"/>
+  <table-filter match-name="USUARIO"/>
+  <table-filter match-name="DETALLE_PEDIDO"/>
+  <table-filter match-name="IMAGEN"/>
+  <table-filter match-name="EMPRESA"/>
+</hibernate-reverse-engineering>

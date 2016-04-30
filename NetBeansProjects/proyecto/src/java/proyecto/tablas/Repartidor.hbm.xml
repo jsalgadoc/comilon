@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 27-04-2016 11:18:04 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="proyecto.tablas.Repartidor" table="REPARTIDOR" schema="JOHN" optimistic-lock="version">
+        <id name="idRepartidor" type="big_decimal">
+            <column name="ID_REPARTIDOR" precision="22" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="persona" class="proyecto.tablas.Persona" fetch="select">
+            <column name="PERSONA_RUT" precision="22" scale="0" not-null="true" />
+        </many-to-one>
+        <property name="vehiculo" type="string">
+            <column name="VEHICULO" length="400" not-null="true" />
+        </property>
+        <property name="licencia" type="string">
+            <column name="LICENCIA" length="400" />
+        </property>
+        <set name="despachos" table="DESPACHO" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_REPARTIDOR" precision="22" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="proyecto.tablas.Despacho" />
+        </set>
+    </class>
+</hibernate-mapping>
