@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 27-04-2016 11:18:04 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="Model.Despacho" optimistic-lock="version" schema="JOHN" table="DESPACHO">
+    <id name="idDespacho" type="big_decimal">
+      <column name="ID_DESPACHO" precision="22" scale="0"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="Model.Pedido" fetch="select" name="pedido">
+      <column name="ID_PEDIDO" not-null="true" precision="22" scale="0"/>
+    </many-to-one>
+    <many-to-one class="Model.Repartidor" fetch="select" name="repartidor">
+      <column name="ID_REPARTIDOR" not-null="true" precision="22" scale="0"/>
+    </many-to-one>
+    <many-to-one class="Model.Venta" fetch="select" name="venta">
+      <column name="ID_VENTA" precision="22" scale="0"/>
+    </many-to-one>
+    <property name="direccion" type="string">
+      <column length="400" name="DIRECCION" not-null="true"/>
+    </property>
+    <property name="comuna" type="string">
+      <column length="400" name="COMUNA" not-null="true"/>
+    </property>
+    <property name="numeracion" type="big_decimal">
+      <column name="NUMERACION" precision="22" scale="0"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="ventas" table="VENTA">
+      <key>
+        <column name="ID_DESPACHO" precision="22" scale="0"/>
+      </key>
+      <one-to-many class="Model.Venta"/>
+    </set>
+  </class>
+</hibernate-mapping>

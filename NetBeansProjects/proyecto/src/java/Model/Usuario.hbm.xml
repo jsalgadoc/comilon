@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 27-04-2016 11:18:04 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="Model.Usuario" optimistic-lock="version" schema="JOHN" table="USUARIO">
+    <id name="idUsuario" type="big_decimal">
+      <column name="ID_USUARIO" precision="22" scale="0"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="Model.Persona" fetch="select" name="persona">
+      <column name="RUT" not-null="true" precision="22" scale="0"/>
+    </many-to-one>
+    <many-to-one class="Model.TipoUsuario" fetch="select" name="tipoUsuario">
+      <column name="ID_TIPO_USUARIO" not-null="true" precision="22" scale="0"/>
+    </many-to-one>
+    <property name="nombreUsuario" type="string">
+      <column length="400" name="NOMBRE_USUARIO" not-null="true"/>
+    </property>
+    <property name="contraseña" type="string">
+      <column length="400" name="CONTRASEÑA" not-null="true"/>
+    </property>
+  </class>
+</hibernate-mapping>

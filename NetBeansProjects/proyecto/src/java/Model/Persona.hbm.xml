@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 27-04-2016 11:18:04 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="Model.Persona" optimistic-lock="version" schema="JOHN" table="PERSONA">
+    <id name="rut" type="big_decimal">
+      <column name="RUT" precision="22" scale="0"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="dv" type="string">
+      <column length="8" name="DV" not-null="true"/>
+    </property>
+    <property name="nombre" type="string">
+      <column length="400" name="NOMBRE" not-null="true"/>
+    </property>
+    <property name="app" type="string">
+      <column length="400" name="APP" not-null="true"/>
+    </property>
+    <property name="apm" type="string">
+      <column length="400" name="APM" not-null="true"/>
+    </property>
+    <property name="direccion" type="string">
+      <column length="400" name="DIRECCION"/>
+    </property>
+    <property name="telefono" type="big_decimal">
+      <column name="TELEFONO" precision="22" scale="0"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="clientes" table="CLIENTE">
+      <key>
+        <column name="RUT" not-null="true" precision="22" scale="0"/>
+      </key>
+      <one-to-many class="Model.Cliente"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="usuarios" table="USUARIO">
+      <key>
+        <column name="RUT" not-null="true" precision="22" scale="0"/>
+      </key>
+      <one-to-many class="Model.Usuario"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="repartidors" table="REPARTIDOR">
+      <key>
+        <column name="PERSONA_RUT" not-null="true" precision="22" scale="0"/>
+      </key>
+      <one-to-many class="Model.Repartidor"/>
+    </set>
+  </class>
+</hibernate-mapping>

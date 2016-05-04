@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 27-04-2016 11:18:04 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="Model.Convenio" optimistic-lock="version" schema="JOHN" table="CONVENIO">
+    <id name="idConvenio" type="big_decimal">
+      <column name="ID_CONVENIO" precision="22" scale="0"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="Model.Empresa" fetch="select" name="empresa">
+      <column name="ID_EMPRESA" not-null="true" precision="22" scale="0"/>
+    </many-to-one>
+    <property name="nombreConvenio" type="string">
+      <column length="400" name="NOMBRE_CONVENIO"/>
+    </property>
+    <property name="descripcion" type="clob">
+      <column name="DESCRIPCION"/>
+    </property>
+    <property name="fechaContrato" type="date">
+      <column length="7" name="FECHA_CONTRATO" not-null="true"/>
+    </property>
+    <property name="fechaCaducacion" type="date">
+      <column length="7" name="FECHA_CADUCACION" not-null="true"/>
+    </property>
+    <property name="saldoTrabajador" type="big_decimal">
+      <column name="SALDO_TRABAJADOR" not-null="true" precision="22" scale="0"/>
+    </property>
+  </class>
+</hibernate-mapping>

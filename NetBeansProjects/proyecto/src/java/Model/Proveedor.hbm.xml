@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 27-04-2016 11:18:04 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="Model.Proveedor" optimistic-lock="version" schema="JOHN" table="PROVEEDOR">
+    <id name="idProveedor" type="big_decimal">
+      <column name="ID_PROVEEDOR" precision="22" scale="0"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="nombre" type="string">
+      <column length="400" name="NOMBRE" not-null="true"/>
+    </property>
+    <property name="direccion" type="string">
+      <column length="400" name="DIRECCION" not-null="true"/>
+    </property>
+    <property name="telefono" type="big_decimal">
+      <column name="TELEFONO" precision="22" scale="0"/>
+    </property>
+    <property name="descripcion" type="clob">
+      <column name="DESCRIPCION"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="platos" table="PLATO">
+      <key>
+        <column name="ID_PROVEEDOR" precision="22" scale="0"/>
+      </key>
+      <one-to-many class="Model.Plato"/>
+    </set>
+  </class>
+</hibernate-mapping>

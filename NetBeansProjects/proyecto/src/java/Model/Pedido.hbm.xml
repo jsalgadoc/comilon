@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 27-04-2016 11:18:04 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="Model.Pedido" optimistic-lock="version" schema="JOHN" table="PEDIDO">
+    <id name="idPedido" type="big_decimal">
+      <column name="ID_PEDIDO" precision="22" scale="0"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="Model.Cliente" fetch="select" name="cliente">
+      <column name="CLIENTE_ID_CLIENTE" not-null="true" precision="22" scale="0"/>
+    </many-to-one>
+    <many-to-one class="Model.TipoPedido" fetch="select" name="tipoPedido">
+      <column name="ID_TIPO_PEDIDO" not-null="true" precision="22" scale="0"/>
+    </many-to-one>
+    <property name="fechaEntrega" type="date">
+      <column length="7" name="FECHA_ENTREGA"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="ventas" table="VENTA">
+      <key>
+        <column name="ID_PEDIDO" not-null="true" precision="22" scale="0"/>
+      </key>
+      <one-to-many class="Model.Venta"/>
+    </set>
+    <set fetch="select" inverse="false" lazy="true" name="platos" table="DETALLE_PEDIDO">
+      <key>
+        <column name="ID_PEDIDO" not-null="true" precision="22" scale="0"/>
+      </key>
+      <many-to-many entity-name="proyecto.tablas.Plato">
+        <column name="ID_PLATO" not-null="true" precision="22" scale="0"/>
+      </many-to-many>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="despachos" table="DESPACHO">
+      <key>
+        <column name="ID_PEDIDO" not-null="true" precision="22" scale="0"/>
+      </key>
+      <one-to-many class="Model.Despacho"/>
+    </set>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 27-04-2016 11:18:04 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="Model.Cliente" optimistic-lock="version" schema="JOHN" table="CLIENTE">
+    <id name="idCliente" type="big_decimal">
+      <column name="ID_CLIENTE" precision="22" scale="0"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="Model.Empresa" fetch="select" name="empresa">
+      <column name="ID_EMPRESA" precision="22" scale="0"/>
+    </many-to-one>
+    <many-to-one class="Model.Persona" fetch="select" name="persona">
+      <column name="RUT" not-null="true" precision="22" scale="0"/>
+    </many-to-one>
+    <property name="tipoCliente" type="string">
+      <column length="400" name="TIPO_CLIENTE"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="estadoPedidos" table="ESTADO_PEDIDO">
+      <key>
+        <column name="ID_CLIENTE" not-null="true" precision="22" scale="0"/>
+      </key>
+      <one-to-many class="Model.EstadoPedido"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="pedidos" table="PEDIDO">
+      <key>
+        <column name="CLIENTE_ID_CLIENTE" not-null="true" precision="22" scale="0"/>
+      </key>
+      <one-to-many class="Model.Pedido"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="menuClientes" table="MENU_CLIENTE">
+      <key>
+        <column name="ID_CLIENTE" not-null="true" precision="22" scale="0"/>
+      </key>
+      <one-to-many class="Model.MenuCliente"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="cuentas" table="CUENTA">
+      <key>
+        <column name="ID_CLIENTE" not-null="true" precision="22" scale="0"/>
+      </key>
+      <one-to-many class="Model.Cuenta"/>
+    </set>
+  </class>
+</hibernate-mapping>
